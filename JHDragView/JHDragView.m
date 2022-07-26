@@ -73,18 +73,23 @@
     CGFloat maxY = midY*2;
     CGRect frame = self.frame;
     
-    if (CGRectGetMinX(frame) < 0 ||
+    CGFloat top = _areaInset.top;
+    CGFloat left = _areaInset.left;
+    CGFloat right = _areaInset.right;
+    CGFloat bottom = _areaInset.bottom;
+    
+    if (CGRectGetMinX(frame) < left ||
         CGRectGetMidX(frame) <= midX) {
-        frame.origin.x = 0;
+        frame.origin.x = left;
     }else if (CGRectGetMidX(frame) > midX ||
-              CGRectGetMaxX(frame) > maxX) {
-        frame.origin.x = maxX - CGRectGetWidth(frame);
+              CGRectGetMaxX(frame) > maxX - right) {
+        frame.origin.x = maxX - CGRectGetWidth(frame) - right;
     }
     
-    if (CGRectGetMinY(frame) < 0) {
-        frame.origin.y = 0;
-    }else if (CGRectGetMaxY(frame) > maxY) {
-        frame.origin.y = maxY - CGRectGetHeight(frame);
+    if (CGRectGetMinY(frame) < top) {
+        frame.origin.y = top;
+    }else if (CGRectGetMaxY(frame) > maxY - bottom) {
+        frame.origin.y = maxY - CGRectGetHeight(frame) - bottom;
     }
     
     [UIView animateWithDuration:0.25 animations:^{
