@@ -16,5 +16,9 @@ Drag View. 拖动视图。
 ---
 
 # Logs
+
+### 2022-07-26
+- add property 'areaInset', for dragging area.
+
 ### 2019-05-15
 - upload.
